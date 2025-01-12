@@ -1,0 +1,37 @@
+<mat-card class="city-form-card">
+  <h2>Edit Student</h2>
+
+  <form>
+    <!-- City Name Input -->
+    <app-my-input-text
+      myControlName="contactPhoneNumber"
+      myLabel="Phone number"
+      myPlaceholder="Enter phone number"
+    ></app-my-input-text>
+
+    <!-- Country Dropdown -->
+    <app-my-dropdown
+      [customMessages]="{ required: 'Please select a country.' }"
+      [options]="cities"
+      myControlName="countryId"
+      myLabel="Country"
+    ></app-my-dropdown>
+
+    <!-- Region Dropdown -->
+    <app-my-dropdown
+      [customMessages]="{ required: 'Please select a region.' }"
+      [options]="regions"
+      myControlName="regionId"
+      myLabel="Region"
+    ></app-my-dropdown>
+
+    <div class="form-buttons">
+      <button  color="primary" mat-raised-button type="submit">
+        Save Changes
+      </button>
+      <button color="warn" mat-raised-button routerLink="/admin/cities" type="button">
+        Cancel
+      </button>
+    </div>
+  </form>
+</mat-card>
