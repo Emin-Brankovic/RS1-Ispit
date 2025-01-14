@@ -1,0 +1,47 @@
+<mat-card class="city-form-card">
+  <h2>{{ 'EDIT_STUDENT.TITLE' | translate }}</h2>
+
+  <form (ngSubmit)="editStudent()" [formGroup]="studentEditForm">
+    <!-- City Name Input -->
+    <app-my-input-text
+      myControlName="phoneNumber"
+      myLabel="{{ 'EDIT_STUDENT.PHONE_LABEL' | translate }}"
+      myPlaceholder="Enter phone number"
+    ></app-my-input-text>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>{{ 'EDIT_STUDENT.BIRTH_DATE_LABEL' | translate }}</mat-label>
+      <input matInput [min]="minDate" [max]="maxDate" formControlName="birthDate" [matDatepicker]="picker" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker ></mat-datepicker>
+    </mat-form-field>
+
+
+
+    <!-- Region Dropdown -->
+    <app-my-dropdown
+      [customMessages]="{ required: 'Please select a region.' }"
+      [options]="regions"
+      myControlName="regionId"
+      myLabel="{{'EDIT_STUDENT.REGION_LABEL' | translate}}"
+    ></app-my-dropdown>
+
+    <!-- City Dropdown -->
+    <app-my-dropdown
+      [customMessages]="{ required: 'Please select a Region.' }"
+      [options]="cities"
+      myControlName="cityId"
+      myLabel="{{'EDIT_STUDENT.CITY_LABEL' | translate}}"
+    ></app-my-dropdown>
+
+    <div class="form-buttons">
+      <button [disabled]="studentEditForm.invalid" color="primary" mat-raised-button type="submit">
+        {{'EDIT_STUDENT.SAVE' | translate}}
+      </button>
+      <button color="warn" mat-raised-button routerLink="/admin/cities" type="button">
+        {{'EDIT_STUDENT.CANCEL' | translate}}
+      </button>
+    </div>
+  </form>
+</mat-card>

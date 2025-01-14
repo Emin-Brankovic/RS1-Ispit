@@ -1,0 +1,26 @@
+{
+  "APP": {
+    "TITLE": "Dobrodošli u našu aplikaciju",
+    "DESCRIPTION": "Ovo je primjer lokalizacije."
+  },
+  "LOGIN": {
+    "TITLE": "Prijava",
+    "USERNAME_LABEL": "Korisničko ime:",
+    "USERNAME_PLACEHOLDER": "Unesite korisničko ime",
+    "PASSWORD_LABEL": "Šifra:",
+    "PASSWORD_PLACEHOLDER": "Unesite šifru",
+    "SAVE_LOGIN": "Sačuvaj prijavu",
+    "BUTTON": "Prijavi se"
+  },
+
+  "EDIT_STUDENT": {
+    "TITLE": "Uredi Studenta",
+    "BIRTH_DATE_LABEL": "Datum rodjenja",
+    "REGION_LABEL": "Regija:",
+    "CITY_LABEL": "Grad:",
+    "PHONE_LABEL": "Broj telefona:",
+    "SAVE": "Spasi promjene",
+    "CANCEL": "Otkaži"
+  }
+}
+

@@ -1,0 +1,54 @@
+<mat-card class="city-form-card">
+  <h2>Add Record</h2>
+
+  <form (ngSubmit)="createRecord()"  [formGroup]="recordForm">
+    <!-- City Name Input -->
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Date</mat-label>
+      <input matInput [min]="minDate" [max]="maxDate" formControlName="date" [matDatepicker]="picker" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker ></mat-datepicker>
+    </mat-form-field>
+
+    <app-my-input-text
+      myControlName="year"
+      myLabel="Year of Study"
+      myPlaceholder="Enter phone number"
+      (change)="checkForRepeat()"
+    ></app-my-input-text>
+
+
+    <!-- Region Dropdown -->
+    <app-my-dropdown
+      [customMessages]="{ required: 'Please select a region.' }"
+      [options]="academicYears"
+      [defaultValue]="1"
+      myControlName="academicYearId"
+      myLabel="Academic Year"
+    ></app-my-dropdown>
+
+
+    <app-my-input-text
+      myControlName="tuitionFees"
+      myLabel="Tuiton fees"
+      myPlaceholder="Enter phone number"
+      disabled="true"
+    ></app-my-input-text>
+
+    <label for="repeat"></label>
+    <input [disabled]="true" type="checkbox" formControlName="repeat" id="repeat">
+
+    <!-- City Dropdown -->
+
+    <div class="form-buttons">
+      <button [disabled]="recordForm.invalid" color="primary" mat-raised-button type="submit">
+          Save changes
+      </button>
+      <button color="warn" mat-raised-button routerLink="/admin/cities" type="button">
+        Cancel
+      </button>
+    </div>
+  </form>
+</mat-card>
