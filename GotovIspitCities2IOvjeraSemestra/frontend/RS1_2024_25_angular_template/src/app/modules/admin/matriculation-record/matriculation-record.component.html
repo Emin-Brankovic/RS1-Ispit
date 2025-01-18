@@ -1,0 +1,65 @@
+<h1>Student Matriculation Record</h1>
+
+<p>Student ID: {{student.id}}</p>
+<p>Student First Name: {{student.firstName}}</p>
+<p>Student Last Name: {{student.lastName}}</p>
+
+
+<table [dataSource]="dataSource!" class="mat-elevation-z8" mat-table matSort>
+
+
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+    <mat-cell  *matCellDef="let record">{{ record.id }}</mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <!--  <ng-container matColumnDef="academicYear">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
+      <mat-cell [class]="student.obrisan ? 'obrisano':'' " *matCellDef="let record">{{ record.akademskaGodina.description }}</mat-cell>
+    </ng-container>-->
+
+  <!-- Region Name Column -->
+  <ng-container matColumnDef="academicYear">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Academic Year</mat-header-cell>
+    <mat-cell [class]="student.obrisan ? 'obrisano':'' " *matCellDef="let record">{{ record.akademskaGodina.description }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="yearOfStudy">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Study year</mat-header-cell>
+    <mat-cell [class]="student.obrisan ? 'obrisano':'' " *matCellDef="let record">{{ record.godinaStudija }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="renewal">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Renewal</mat-header-cell>
+    <mat-cell [class]="student.obrisan ? 'obrisano':'' " *matCellDef="let record">{{ record.obnovaGodine }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="winterSemester">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Winter Semester</mat-header-cell>
+    <mat-cell [class]="student.obrisan ? 'obrisano':'' " *matCellDef="let record">{{ record.datum1_ZimskiUpis }}</mat-cell>
+  </ng-container>
+
+  <!-- Country Name Column -->
+  <!--  <ng-container matColumnDef="countryName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Country Name</mat-header-cell>
+      <mat-cell [class]="student.obrisan ? 'obrisano':'' " *matCellDef="let student">{{ student.countryName }}</mat-cell>
+    </ng-container>-->
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+    <mat-cell *matCellDef="let record">
+      <button   color="primary"
+                mat-button  routerLink="/admin/students/verify-semester/{{record.id}}">
+        Verify Semester
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Table Header and Rows -->
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</table>
+
+<button type="button" (click)="CreatMatricaltionRecord()">New Record</button>

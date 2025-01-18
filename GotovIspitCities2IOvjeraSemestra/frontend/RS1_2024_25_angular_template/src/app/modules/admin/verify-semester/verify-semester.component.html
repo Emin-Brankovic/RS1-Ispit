@@ -1,0 +1,30 @@
+<mat-card class="city-form-card">
+  <h2>Verify Semester</h2>
+
+  <form (ngSubmit)="VerifySemester()" [formGroup]="verifySemesterForm">
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Verify date</mat-label>
+      <input matInput [min]="minDate" [max]="maxDate" formControlName="verifyDate" [matDatepicker]="picker" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker ></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Remark</mat-label>
+      <textarea formControlName="remark" matInput required></textarea>
+    </mat-form-field>
+
+
+
+    <div class="form-buttons">
+      <button [disabled]="verifySemesterForm.invalid" color="primary" mat-raised-button type="submit">
+        Save Changes
+      </button>
+      <button color="warn" mat-raised-button routerLink="/admin/cities" type="button">
+        Cancel
+      </button>
+    </div>
+  </form>
+</mat-card>

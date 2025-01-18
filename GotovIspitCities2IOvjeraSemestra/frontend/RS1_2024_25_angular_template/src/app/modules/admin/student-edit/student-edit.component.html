@@ -1,0 +1,72 @@
+<mat-card class="city-form-card">
+  <h2>Edit Student</h2>
+
+  <form (ngSubmit)="updateStudent()" [formGroup]="studentEditForm">
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Birth date</mat-label>
+      <input matInput [min]="minDate" [max]="maxDate" formControlName="birthDate" [matDatepicker]="picker" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker ></mat-datepicker>
+      <mat-error *ngIf="studentEditForm.get('name')?.invalid && studentEditForm.get('birthDate')?.touched">
+        <!-- Dinamičko prikazivanje grešaka -->
+        <ng-container *ngIf="studentEditForm.get('birthDate')?.errors as errors">
+          <small *ngIf="errors['required']">Birth date is required.</small>
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Phone number</mat-label>
+      <input formControlName="phoneNumber" matInput required/>
+      <!--      <mat-error *ngIf="studentEditForm.get('name')?.invalid && cityForm.get('name')?.touched">
+              &lt;!&ndash; Dinamičko prikazivanje grešaka &ndash;&gt;
+              <ng-container *ngIf="cityForm.get('name')?.errors as errors">
+                <small *ngIf="errors['required']">City name is required.</small>
+                <small *ngIf="errors['minlength']">
+                  Minimum {{ errors['minlength'].requiredLength }} characters required.
+                </small>
+                <small *ngIf="errors['maxlength']">
+                  Maximum {{ errors['maxlength'].requiredLength }} characters allowed.
+                </small>
+              </ng-container>
+            </mat-error>-->
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Country</mat-label>
+      <mat-select formControlName="countryId" required>
+        <mat-option *ngFor="let country of countries" [value]="country.id">
+          {{ country.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="studentEditForm.get('countryId')?.invalid && studentEditForm.get('countryId')?.touched">
+        <ng-container *ngIf="studentEditForm.get('countryId')?.errors as errors">
+          <small *ngIf="errors['required']">Country is required.</small>
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Region Dropdown -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Birth Municipality</mat-label>
+      <mat-select formControlName="municipalityId" required>
+        <mat-option *ngFor="let municipality of municipalities" [value]="municipality.id">
+          {{ municipality.name }}
+        </mat-option>
+      </mat-select>
+<!--      <mat-error *ngIf="cityForm.get('regionId')?.touched && cityForm.get('regionId')?.errors">
+        <span *ngIf="cityForm.get('regionId')?.errors?.['required']">Region is required.</span>
+      </mat-error>-->
+    </mat-form-field>
+
+    <div class="form-buttons">
+      <button [disabled]="studentEditForm.invalid" color="primary" mat-raised-button type="submit">
+        Save Changes
+      </button>
+      <button color="warn" mat-raised-button routerLink="/admin/cities" type="button">
+        Cancel
+      </button>
+    </div>
+  </form>
+</mat-card>
